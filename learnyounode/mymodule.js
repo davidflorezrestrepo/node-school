@@ -1,13 +1,12 @@
 const fs = require('fs');
-const path = require('path');
 
-function readDirectory(directory, extension, callback){
-    return fs.readdir(directory, function (error, dirContent){
+function readDirectory(directory, extension, done){
+    fs.readdir(directory, function (error, dirContent){
         if (error) {
-            return callback(error);
+            done(error);
         } else {
             dirContent = dirContent.filter( x => x.match('.*\.'+extension+'$'));
-            callback(null, dirContent);
+            done(null, dirContent);
         }
     });
 }
